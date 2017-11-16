@@ -1,0 +1,72 @@
+{
+  "name": "collab",
+  "version": "1.0.0",
+  "description": "collabing users using spotify API",
+  "main": "start.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "seed": "node seed.js",
+    "start-seed": "node script/seed.js; node start",
+    "start": "npm run build-client-watch & npm run start-server-dev",
+    "start-server-dev": "NODE_ENV='development' nodemon start -e html,js,scss --ignore public",
+    "start-dev": "npm run build-client-watch & npm run start-server",
+    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/boilermaker-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyunjkim/collab.git"
+  },
+  "author": "Hyunjoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyunjkim/collab/issues"
+  },
+  "homepage": "https://github.com/hyunjkim/collab#readme",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.1",
+    "history": "^4.7.2",
+    "passport": "^0.4.0",
+    "passport-spotify": "^0.3.1",
+    "pg": "^6.1.2",
+    "pg-hstore": "^2.3.2",
+    "querystring": "^0.2.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.2",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.8.1",
+    "redux-thunk": "^2.2.0",
+    "request": "^2.83.0",
+    "spotify-web-api-js": "^0.22.1",
+    "spotify-web-api-node": "^2.5.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "eslint": "^4.10.0",
+    "eslint-plugin-react": "^7.4.0",
+    "mocha": "^3.3.0",
+    "morgan": "^1.9.0",
+    "redux-devtools-extension": "^2.13.2",
+    "webpack": "^3.8.1",
+    "webpack-livereload-plugin": "^1.0.0"
+  }
+}

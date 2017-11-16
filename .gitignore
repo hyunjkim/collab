@@ -1,0 +1,14 @@
+# Unnesscary Files #
+node_modules
+
+# OS generated files #
+.DS_Store*
+
+# Environment specific files #
+
+# ETC #
+secret.js
+package-lock.json
+public/bundle.js
+public/bundle.js.map
+
