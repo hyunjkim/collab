@@ -54,7 +54,7 @@ export class UserHome extends Component {
             }
           </ul>
         </nav>
-        {<Tracks/>}
+        <Tracks/>
       </div>
     </div>
    )

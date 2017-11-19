@@ -22,7 +22,7 @@ export class Tracks extends Component {
     this.setState({findTrack: text});
   }
   render(){
-    const items = this.props.tracks;
+    const items = this.props.tracks.items;
 
     return (
           <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
