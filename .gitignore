@@ -7,7 +7,6 @@ node_modules
 # Environment specific files #
 
 # ETC #
-secret.js
 package-lock.json
 public/bundle.js
 public/bundle.js.map

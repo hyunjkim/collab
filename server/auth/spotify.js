@@ -13,14 +13,23 @@ let {spotifyApi, refreshToken} = require('../spotify/spotifyMethods'),
       state = 'spotify_auth_state',
       authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
 
+// if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_SECRET) {
+//   console.log('Spotify client ID / secret not found. Skipping Spotify OAuth.');
+// } else {
+//   router.get('/', (req,res,next) => {
+//     console.log('** AUTHORIZED URL **',authorizeURL);
+//     res.redirect(authorizeURL);
+//   })
+// }
+
 if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_SECRET) {
   console.log('Spotify client ID / secret not found. Skipping Spotify OAuth.');
-} else {
-  router.get('/', (req,res,next) => {
-    console.log('** AUTHORIZED URL **',authorizeURL);
-    res.redirect(authorizeURL);
-  })
-}
+} 
+
+router.get('/', (req,res,next) => {
+  console.log('** AUTHORIZED URL **',authorizeURL);
+  res.redirect(authorizeURL);
+})
 
 /**
 * Retrieve an access token and a refresh token
