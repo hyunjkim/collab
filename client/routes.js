@@ -17,8 +17,6 @@ class Routes extends Component {
   render() {
     const {isLoggedIn} = this.props;
 
-    console.log('ROUTES PAGE: LINE 20 - ISLOGGEDIN:', isLoggedIn);
-
     return (
       <Router history={history}>
         <Navbar>
