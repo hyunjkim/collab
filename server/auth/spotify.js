@@ -1,33 +1,40 @@
 const router = require('express').Router(),
       {User} = require('../db/models/associations'),
       PORT = 3000,
-      SpotifyWebApi = require('spotify-web-api-node');
-let {spotifyApi, refreshToken} = require('../spotify/spotifyMethods'),
+      SpotifyWebApi = require('spotify-web-api-node'),
       scopes = [
                 'user-read-email',
                 'user-read-private',
                 'playlist-read-private',
                 'playlist-read-collaborative',
                 'playlist-modify-public',
-                'playlist-modify-private'],
-      state = 'spotify_auth_state',
-      authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+                'playlist-modify-private'];
+let {spotifyApi, refreshToken} = require('../spotify/spotifyMethods');
+let generateRandomString = (length) => {
+  let text = '';
+  let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_SECRET) {
-  console.log('Spotify client ID / secret not found. Skipping Spotify OAuth.');
-} else {
-  router.get('/', (req,res,next) => {
-    console.log('** AUTHORIZED URL **',authorizeURL);
-    res.redirect(authorizeURL);
-  })
-}
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+    return text;
+};
+
+/*
+  When the client hits our /login endpoint, we need to direct them to Spotify’s authorization URL. We achieve this via:
+*/
+router.get('/', (req,res,next) => {
+  const state = generateRandomString(16),
+        authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+  console.log('** AUTHORIZED URL **',authorizeURL);
+  res.redirect(authorizeURL);
+})
 
 /**
 * Retrieve an access token and a refresh token
 */
 router.get('/callback', (req,res,next) => {
         const {code} = req.query;
-        process.env.SPOTIFY_CODE = code;
         spotifyApi.authorizationCodeGrant(code)
                   .then(data => {
                     console.log('The token expires in ' + data.body['expires_in']);
@@ -40,7 +47,7 @@ router.get('/callback', (req,res,next) => {
                     spotifyApi.setRefreshToken(data.body['refresh_token']);
                     res.redirect('/');
                   })
-                  .catch(err => console.log('LINE48 - SPOTIFY.JS - Something went wrong!', err));
+                  .catch(err => console.log('SPOTIFY.JS - LINE42 -  Something went wrong! :', err));
       })
 
 router.get('/me', (req, res, next) => {
@@ -63,10 +70,10 @@ router.get('/me', (req, res, next) => {
                         .spread((user, err) => {
                           console.log(user.get({plain: true}))
                         })
-                        .catch(err => console.log('AUTH/SPOTIFY ERROR - ',err));
+                        .catch(err => console.log('AUTH/SPOTIFY - LINE 65 - ERROR - ',err));
                     res.json(data.body);
                   })
-                  .catch(err => console.log('SPOTIFY.JS - LINE 87 - Something went wrong!', err));
+                  .catch(err => console.log('SPOTIFY.JS - LINE 68 - Something went wrong! :', err));
       })
 
 module.exports = router;

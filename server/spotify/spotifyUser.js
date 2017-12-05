@@ -10,7 +10,7 @@ router.get('/:spotifyId', (req, res, next) => {
   spotifyApi = refreshToken();
   spotifyApi.getUserPlaylists(spotifyId)
     .then(playlist => {
-        console.log('LINE 74-USER.JS - ', playlist)
+        console.log('LINE 13-spotifyUSER.JS - ', playlist)
         res.json(playlist.body)
     })
     .catch(err=>console.log('Something went wrong!',err));

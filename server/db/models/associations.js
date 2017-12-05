@@ -1,5 +1,5 @@
 const User = require('./user');
-const CollabPlaylist = require('./collabPlaylist');
+const CollabPlaylist = require('./collab_playlist');
 const Tracks = require('./Tracks');
 
 /**
@@ -23,5 +23,5 @@ Tracks.belongsTo(User,{through: 'UserTracks'});
 module.exports = {
   User,
   CollabPlaylist,
-  Tracks,
+  Tracks
 }

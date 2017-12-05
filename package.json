@@ -11,10 +11,8 @@
     "build-client-watch": "webpack -w",
     "seed": "node seed.js",
     "start-seed": "node script/seed.js; node start",
-    "start": "npm run build-client-watch & npm run start-server-dev",
-    "start-server-dev": "NODE_ENV='development' nodemon start -e html,js,scss --ignore public",
-    "start-dev": "npm run build-client-watch & npm run start-server",
-    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
+    "start": "npm run build-client-watch & npm run start-dev",
+    "start-dev": "NODE_ENV='development' nodemon start -e html,js,scss --ignore public",
     "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/boilermaker-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
   },
   "repository": {

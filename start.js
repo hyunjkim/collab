@@ -15,7 +15,7 @@ let cookieParser = require('cookie-parser');
 
 //==============================================================================
 /**
-*Create App instance
+* Create App instance
 */
 const app = express();
 if (process.env.NODE_ENV !== 'production') require('./secret')
@@ -30,7 +30,7 @@ passport.deserializeUser((id, done) =>
     .catch(done));
 //==============================================================================
 /**
-*Middleware
+* Middleware
 */
 app.use(cookieParser());
 app.use(morgan('dev'));
@@ -97,4 +97,7 @@ app.listen(PORT,() => {
   db.sync();
 });
 
-module.exports = app;
+module.exports = {
+  app,
+  passport
+};
