@@ -42,7 +42,6 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = (state) => {
-  console.log('LINE 45', state.spotifyUser)
   return {
     isLoggedIn: !!state.spotifyUser.id,
   }

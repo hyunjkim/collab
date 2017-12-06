@@ -24,16 +24,13 @@ export const getTracks = tracks => ({ type: GET_TRACKS, tracks });
  */
  //==============================================================================
 /**
-*  GET PLAYLIST FROM DATABASE
-*/
-/**
 *  GET USER PLAYLIST
 */
 export const fetchUserPlaylist = (spotifyId) =>
   dispatch =>
     axios.get(`/spotify/${spotifyId}`)
       .then(userPlaylist => {
-        console.log('STORE/SPOTIFYTRACKS - LINE36 - ', userPlaylist);
+        console.log('STORE/SPOTIFYTRACKS - LINE33 - ', userPlaylist);
         dispatch(getUserPlaylist(userPlaylist.data));
         }
       )
@@ -41,15 +38,15 @@ export const fetchUserPlaylist = (spotifyId) =>
 /**
 *  GET TRACKS FROM USER PLAYLIST
 */
-export const fetchPlaylistTracks = (trackId,spotifyName) =>
-  dispatch =>
-    axios.get(`/tracks/${trackId}/${spotifyName}`)
-      .then(tracks => {
-        console.log('SPOTIFYTRACKS - LINE48 - tracks', tracks);
-        dispatch(getTracks(tracks.data));
-        }
-      )
-      .catch(err => console.log(err));
+// export const fetchPlaylistTracks = (trackId,spotifyName) =>
+//   dispatch =>
+//     axios.get(`/tracks/${trackId}/${spotifyName}`)
+//       .then(tracks => {
+//         console.log('SPOTIFYTRACKS - LINE48 - tracks', tracks);
+//         dispatch(getTracks(tracks.data));
+//         }
+//       )
+//       .catch(err => console.log(err));
 //==============================================================================
 /**
  * REDUCER

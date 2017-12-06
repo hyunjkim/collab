@@ -14,15 +14,7 @@ router.get('/:trackId/:spotifyName', (req, res, next) => {
     .then(tracks => {
       console.log('The playlist contains these tracks', tracks.body);
     })
-    .catch(err=>console.log("LINE 29-SPOTIFYTRACKS ERROR MESSAGE :", err));
+    .catch(err=>console.log("LINE 17-SPOTIFYTRACKS ERROR MESSAGE :", err));
 });
 
 module.exports = router
-
-
-// api.getPlaylistTracks('thelinmichael', '3ktAYNcRHpazJ9qecm3ptn', { 'offset' : 1, 'limit' : 5, 'fields' : 'items' })
-//   .then(function(data) {
-//     console.log('The playlist contains these tracks', data.body);
-//   }, function(err) {
-//     console.log('Something went wrong!', err);
-//   });

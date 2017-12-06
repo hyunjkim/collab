@@ -3,11 +3,11 @@ import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import spotifyUser from './spotifyUser';
-import spotifyTracks from './spotifyTracks';
+import spotifyPlaylists from './spotifyPlaylists';
 
 const reducer = combineReducers({
   spotifyUser,
-  spotifyTracks
+  spotifyPlaylists
 })
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -18,4 +18,4 @@ const store = createStore(reducer, middleware);
 
 export default store;
 export * from './spotifyUser';
-export * from './spotifyTracks';
+export * from './spotifyPlaylists';

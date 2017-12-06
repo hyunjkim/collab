@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchPlaylistTracks} from '../store/spotifyTracks';
+import {fetchPlaylistplaylists} from '../store/spotifyPlaylists';
 
 
-export class Tracks extends Component {
+export class playlists extends Component {
 
   componentDidMount(){
-    const {items} = this.props.tracks;
+    const {items} = this.props.playlists;
 
-    console.log('LINE9 - PROPS: ', this.props);
-    console.log('LINE10 - PROPS - TRACKS: ', items);
-
-    if(items) {
-      const {owner, id} = items;
-    this.props.getPlaylist(id, owner.id);
-    }
+    console.log('LINE11 - PROPS: ', this.props);
+    console.log('LINE12 - PROPS - ITEMS: ', items);
   }
 
   handleChange(event){
@@ -22,7 +17,7 @@ export class Tracks extends Component {
     this.setState({findTrack: text});
   }
   render(){
-    const items = this.props.tracks.items;
+    const items = this.props.playlists.items;
 
     return (
           <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -35,33 +30,33 @@ export class Tracks extends Component {
                 placeholder="Search"/>
                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
-              <div className="table-responsive">
+              {/*<div className="table-responsive">
                 <table className="table table-striped">
                   <thead scope="row">
                     <tr>
                       <th>#</th>
-                      <th>Song</th>
+                      <th>playlist</th>
                       <th>Image</th>
                       <th>Listen on Spotify</th>
                     </tr>
                   </thead>
                   {
                     items?
-                    items.length&&items.map(song => {
+                    items.length&&items.map(playlist => {
                       return (
-                               <tbody key={song.id} >
+                               <tbody key={playlist.id} >
                                 <tr scope="row">
-                                  <td>{song.id}</td>
-                                  <td>{song.name}</td>
+                                  <td>{playlist.id}</td>
+                                  <td>{playlist.name}</td>
                                  {
-                                  song.images[0]?
+                                  playlist.images[0]?
                                    <img
-                                    src={song.images[0].url}
+                                    src={playlist.images[0].url}
                                     height="250"
                                     width="250"/>
                                     :
                                     <td>no image</td>
-                                 } <a href={song.external_urls.spotify}>
+                                 } <a href={playlist.external_urls.spotify}>
                                     listen on spotify
                                   </a>
                                 </tr>
@@ -75,7 +70,7 @@ export class Tracks extends Component {
                       </tbody>
                   }
                 </table>
-              </div>
+              </div>*/}
           </main>
           )
     }
@@ -85,21 +80,21 @@ export class Tracks extends Component {
  * CONTAINER
  */
 const mapState = (state) => {
-  console.log('LINE 71 - TRACKS - STATE -',state);
+  console.log('LINE 83 - TRACKS.JS - STATE -',state);
   return {
-    tracks: state.spotifyTracks,
+    playlists: state.spotifyplaylists,
   }
 }
 
 const mapToProps = (dispatch) => {
   return {
     getPlaylist:(trackId, spotifyName)=>{
-      dispatch(fetchPlaylistTracks(trackId, spotifyName))
+      dispatch(fetchPlaylistplaylists(trackId, spotifyName))
     }
   }
 }
 
-export default connect(mapState,mapToProps)(Tracks);
+export default connect(mapState,mapToProps)(playlists);
 
 
 
